@@ -1,0 +1,11 @@
+server:
+  port: 9990
+  servlet:
+    context-path: /isheng-user-server
+
+spring:
+   application:
+      name: isheng-user-server
+   profiles:
+      active: dev
+    

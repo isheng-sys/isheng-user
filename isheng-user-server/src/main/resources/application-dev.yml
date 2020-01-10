@@ -1,0 +1,59 @@
+spring:
+   profiles: dev
+   datasource:
+      username: root
+      password: ENC(NkMfUvAbB8uI1f26OijRwg==
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/isheng-dev?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      type: com.zaxxer.hikari.HikariDataSource
+      hikari: 
+         connection-timeout: 30000
+         idle-timeout: 30000
+         auto-commit: 'true'
+         minimum-idel: 5
+         maximum-pool-size: 1000
+         pool-name: DatabookHikaiCP
+
+pagehelper:
+   params: count=countSql
+   helperDialect: mysql
+   reasonable: 'true'
+   supportMethodsArguments: 'true' 
+
+mybatis:
+   type-aliases-package: com.isheng.hpb.model.dto
+   mapper-locations: 'classpath*:mapper/*.xml'     
+   configuration:
+      map-underscore-to-camel-case: 'true'
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+         )
+## 数据库连接字段加密方式、加密盐值
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    password: opremlrtrowgktm2k9kyktyirjri974jklew
+    
+feign:
+  hystrix:
+    enabled: 'true'
+    hystrix:
+      command:
+        default:
+          execution:
+            isolation:
+              thread:
+                timeoutInMilliseconds: 10000
+      httpclient:
+         enabled: 'true'      
+         
+# 其他服务请求url               
+feignClient:
+   isheng-role:
+      url: 'http://127.0.0.1:8080'
+   isheng-menu:
+      url: 'http://127.0.0.1:8081'
+
+## 日志级别配置   
+logging:
+  pattern:
+    level: debug

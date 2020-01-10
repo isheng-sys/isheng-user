@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.isheng.hpb.mapper.UserMapper">
+
+	<resultMap id="BaseResultMap" type="com.isheng.hpb.model.entity.User" >
+		<id column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+		<result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+		<result column="create_time" property="createTime" jdbcType="DATE"/>
+		<result column="update_time" property="updateTime" jdbcType="DATE"/>
+		<result column="remark" property="remark" jdbcType="VARCHAR"/>
+		
+		<result column="username" property="username" jdbcType="VARCHAR"/>
+		<result column="password" property="password" jdbcType="VARCHAR"/>
+		<result column="work_no" property="workNo" jdbcType="VARCHAR"/>
+		<result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+		<result column="real_name" property="realName" jdbcType="VARCHAR"/>
+		<result column="gender" property="gender" jdbcType="INTEGER"/>
+		<result column="age" property="age" jdbcType="INTEGER"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<select id="login" parameterType="com.isheng.hpb.model.dto.UserLoginDTO" resultMap="BaseResultMap">
+		select 
+			id,
+			create_user,
+			update_user,
+			create_time,
+			update_time,
+			remark,
+			`username`,
+			password,
+			word_no,
+			mobile,
+			real_name,
+			gender,
+			age,
+			status
+		from 
+			user
+		<where>
+			status = 1 and username = #{loginName} or work_no = #{loginName} or mobile = #{loginName}
+		</where> 
+	</select>
+	
+	<insert id="insert" parameterType="com.isheng.hpb.model.entity.User">
+		insert into t_user (
+			id,
+			create_user,
+			create_time,
+			remark,
+			username,
+			password,
+			work_no,
+			mobile,
+			real_name,
+			gender,
+			age,
+			status
+		) values (
+			#{id},
+			#{createUser},
+			NOW(),
+			#{remark},
+			#{username},
+			#{password},
+			#{workNo},
+			#{mobile},
+			#{realName},
+			<choose>
+				<when test="gender != null">
+					#{gender},
+				</when>
+				<otherwise>
+					-1
+				</otherwise>
+			</choose>
+			#{age},
+			<choose>
+				<when test="status != null">
+					#{status},
+				</when>
+				<otherwise>
+					0
+				</otherwise>
+			</choose>
+		) 
+	</insert>
+	
+	<update id="update" parameterType="com.isheng.hpb.model.entity.User">
+		update t_user
+		<trim prefix="set" prefixOverrides=",">
+			<if test="updateUser != null and updateUser != ''">
+				update_user = #{updateUser},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime},
+			</if>
+			<if test="remark != null and remark != ''">
+				remark = #{remark},
+			</if>
+			<if test="username != null and username != ''">
+				username = #{username},
+			</if>
+			<if test="mobile != null and mobile != ''">
+			 	mobile = #{mobile},
+			</if>
+			<if test="realName != null and realName != ''">
+			 	real_name = #{realName},
+			</if>
+			<if test="gender != null">
+			 	gender = #{gender},
+			</if>
+			<if test="age != null">
+			 	age = #{age},
+			</if>
+			<if test="status != null">
+			 	status = #{status}
+			</if>
+		</trim>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+
+	
+
+
+</mapper>
