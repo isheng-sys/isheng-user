@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.isheng</groupId>
+		<artifactId>isheng-user</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>isheng-user-web</artifactId>
+	<packaging>war</packaging>
+	<name>isheng-user-web</name>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.isheng</groupId>
+			<artifactId>isheng-user-common</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>isheng-user-web</finalName>
+	</build>
+</project>
