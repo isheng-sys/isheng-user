@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.isheng</groupId>
+    <artifactId>isheng-user</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  <artifactId>isheng-user-common</artifactId>
+  <name>isheng-user-common</name>
+  <description>User Common</description>
+  
+  <dependencies>
+		<dependency>
+			<groupId>com.isheng</groupId>
+			<artifactId>isheng-pub-common</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		
+		<!--mybatis -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+		</dependency>
+
+		<!--mysql驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+</project>
